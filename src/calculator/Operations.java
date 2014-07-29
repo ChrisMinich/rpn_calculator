@@ -1,8 +1,8 @@
 package calculator;
 
-class Calc {
+class Operations {
     public static RegisterStack calcStack = new RegisterStack(8, "primary");
-    public static double x, y;
+    private static double x, y;
 
     private static boolean popTwo() {
         if ( calcStack.getCount() < 2 ) {
@@ -20,20 +20,21 @@ class Calc {
 
     private static void pushResult(double result) {
         calcStack.push(result);
-        System.out.println(result);
     }
 
-    public static void add() {
+    public static boolean add() {
         if ( popTwo() ) {
             double result = y + x;
             pushResult(result);
+            return true;
         }
+        return false;
     }
 
-    public static void subtract() {
+    public static boolean subtract() {
         if ( calcStack.getCount() < 1 ) {
             calcStack.printEmptyMsg();
-            return;
+            return false;
         }
         else if ( calcStack.getCount() == 1) {
             x = calcStack.pop();
@@ -45,17 +46,20 @@ class Calc {
 
         double result = y - x;
         pushResult(result);
+        return true;
     }
 
-    public static void multiply() {
+    public static boolean multiply() {
         if ( popTwo() ) {
             double result = y * x;
             pushResult(result);
+            return true;
         }
+        return false;
     }
 
-    public static void divide() {
-        if ( !popTwo() ) return;
+    public static boolean divide() {
+        if ( !popTwo() ) return false;
         if ( x == 0 ) {
             System.out.println("Cannot divide by 0.");
             calcStack.push(y);
@@ -65,6 +69,16 @@ class Calc {
             double result = y / x;
             pushResult(result);
         }
+        return true;
+    }
+
+    // get result from top of stack ( x register )
+    public static double getRegisterX() {
+        int size = calcStack.getCount();
+        if ( size > 0 )
+            return calcStack.getValueAtIndex(calcStack.getCount()-1);
+        else
+            return 0;
     }
 
     // print out the stack

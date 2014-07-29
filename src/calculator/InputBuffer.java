@@ -1,47 +1,26 @@
-package calculator; /**
+package calculator;
+
+/**
  calculator.InputBuffer.java
  by Chris Minich
  cfminich@gmail.com
 
- This class will read a line of text, storing it in buffer.
- Once you instantiate it, you can obtain a string by calling yourObject.getNextString()
-
- If the buffer is empty, getNextString will automatically call prompt() in order to get
- more input from the user.
+ This class will read a line of text and put it in buffer.
+ Obtain each one-word substring by calling getNextString().
  */
-
-import java.io.*;
 
 class InputBuffer {
     private String buffer;
     private int position;
-    private BufferedReader newLine = new BufferedReader(new InputStreamReader(System.in));
 
-    // Construct empty buffer
-    public InputBuffer() {
-        position = -1;
-        buffer = "";
-    }
-
-    // Prompt for input when buffer is empty
-    private void prompt() {
-        System.out.print("? ");
-
-        try {
-            buffer = newLine.readLine();
-        }
-        catch (IOException ioe) {
-            System.out.println("IO error trying to read a string.");
-            System.exit(1);
-        }
-
+    public InputBuffer(String str) {
         position = 0;
+        buffer = str;
     }
 
-    // Get a string from buffer
     public String getNextString() {
         if ( position < 0 )
-            prompt();
+            return "";
 
         StringBuilder newString = new StringBuilder();
         char ch;

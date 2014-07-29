@@ -4,7 +4,7 @@
  cfminich@gmail.com
 
  This is a stack of doubles. If you insert more items than the stack can hold,
- the bottom number is deleted.
+ the bottom item is deleted.
 
  The primary stack of the calculator uses this class. It is also intended to
  be used for memory registers.
