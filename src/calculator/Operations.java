@@ -102,4 +102,22 @@ class Operations {
         }
         return true;
     }
+
+    // see if a string is hexadecimal
+    public static boolean isHex(String str) {
+        try {
+            int i = Integer.parseInt(str, 16);
+        }
+        catch(NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    // show x in hexadecimal
+    public static String asHex() {
+        int i = (int) calcStack.getX();
+        return Integer.toHexString(i);
+    }
+
 }

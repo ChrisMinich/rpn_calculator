@@ -61,6 +61,11 @@ class RegisterStack implements NumberStack {
         return index+1;
     }
 
+    // getIndex() - value of index
+    public int getIndex() {
+        return index;
+    }
+
     // getName() - return the name of the stack
     public String getName() {
         return name;
@@ -69,6 +74,14 @@ class RegisterStack implements NumberStack {
     // getValueAtIndex() - return the array element at given index
     public double getValueAtIndex(int index) {
         return stack[index];
+    }
+
+    // getX() - return value at top of the stack
+    public double getX() {
+        if (index >= 0)
+            return stack[index];
+        else
+            return 0;
     }
 
     // clearStack()

@@ -162,10 +162,14 @@ public class CalculatorGUI extends javax.swing.JFrame {
                                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        pack();
+        // pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
+        javax.swing.JTextField[] textfieldArray = {jTextField2, jTextField3,
+                jTextField4, jTextField5, jTextField6, jTextField7, jTextField8, jTextField9};
+
         String op;
         String text = jTextField1.getText();
         InputBuffer lineStr = new InputBuffer(text);
@@ -176,6 +180,10 @@ public class CalculatorGUI extends javax.swing.JFrame {
                 d = Double.parseDouble(op);
                 Operations.calcStack.push(d);
             }
+            else if (Operations.isHex(op)) {
+                int i = Integer.parseInt(op, 16);
+                Operations.calcStack.push(i);
+            }
             else {
                 if (op.equals("+")) add();
                 else if (op.equals("-")) subtract();
@@ -183,6 +191,11 @@ public class CalculatorGUI extends javax.swing.JFrame {
                 else if (op.equals("/")) divide();
                 else if (op.equals("s")) displayStack();
                 else if (op.equals("c")) Operations.clearStack();
+                else if (op.equals("h")) {
+                    jTextArea1.append(Operations.asHex() + newline);
+                    op = lineStr.getNextString();
+                    continue;
+                }
                 else { // echo input only
                     op = lineStr.getNextString();
                     continue;
@@ -195,6 +208,15 @@ public class CalculatorGUI extends javax.swing.JFrame {
         }
 
         jTextField1.setText("");
+
+        int index = Operations.calcStack.getIndex();
+        for (int i=7; i>=0; i--) {
+            textfieldArray[7-i].setText("");
+            if (i<=index) {
+                Double v = Operations.calcStack.getValueAtIndex(i);
+                textfieldArray[index-i].setText(v.toString());
+            }
+        }
 
         // textField.selectAll();
 
@@ -280,5 +302,6 @@ public class CalculatorGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+
     // End of variables declaration
 }
