@@ -6,8 +6,6 @@
 
 package calculator;
 
-import java.awt.*;
-
 /**
  *
  * @author chris
@@ -180,6 +178,8 @@ public class CalculatorGUI extends javax.swing.JFrame {
                 d = Double.parseDouble(op);
                 Operations.calcStack.push(d);
             }
+            else if (op.equals("c"))
+                Operations.clearStack();
             else if (Operations.isHex(op)) {
                 int i = Integer.parseInt(op, 16);
                 Operations.calcStack.push(i);
@@ -190,7 +190,6 @@ public class CalculatorGUI extends javax.swing.JFrame {
                 else if (op.equals("*")) multiply();
                 else if (op.equals("/")) divide();
                 else if (op.equals("s")) displayStack();
-                else if (op.equals("c")) Operations.clearStack();
                 else if (op.equals("h")) {
                     jTextArea1.append(Operations.asHex() + newline);
                     op = lineStr.getNextString();
