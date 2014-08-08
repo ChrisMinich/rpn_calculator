@@ -55,9 +55,10 @@ public class CalculatorGUI extends javax.swing.JFrame {
         jTextField1.setText("");
         jTextField1.setMaximumSize(new java.awt.Dimension(86, 27));
         jTextField1.setMinimumSize(new java.awt.Dimension(86, 27));
+
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jActionPerformed(evt);
             }
         });
 
@@ -164,7 +165,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jActionPerformed(java.awt.event.ActionEvent evt) {
         javax.swing.JTextField[] textfieldArray = {jTextField2, jTextField3,
                 jTextField4, jTextField5, jTextField6, jTextField7, jTextField8, jTextField9};
 

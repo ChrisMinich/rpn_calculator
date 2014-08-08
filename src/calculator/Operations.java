@@ -70,6 +70,7 @@ class Operations {
             System.out.println("Cannot divide by 0.");
             calcStack.push(y);
             calcStack.push(x);
+            return false;
         }
         else {
             double result = y / x;
@@ -101,7 +102,7 @@ class Operations {
     // see if a string is numeric
     public static boolean isNumeric(String str) {
         try {
-            double d = Double.parseDouble(str);
+            Double.parseDouble(str);
         }
         catch(NumberFormatException nfe) {
             return false;
@@ -112,7 +113,7 @@ class Operations {
     // see if a string is hexadecimal
     public static boolean isHex(String str) {
         try {
-            int i = Integer.parseInt(str, 16);
+            Integer.parseInt(str, 16);
         }
         catch(NumberFormatException nfe) {
             return false;
