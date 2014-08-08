@@ -209,11 +209,12 @@ public class CalculatorGUI extends javax.swing.JFrame {
         jTextField1.setText("");
 
         int index = Operations.calcStack.getIndex();
-        for (int i=7; i>=0; i--) {
-            textfieldArray[7-i].setText("");
+        int maxIndex = Operations.getMaxIndex();
+        for (int i=maxIndex; i>=0; i--) {
+            textfieldArray[i].setText("");
             if (i<=index) {
-                Double v = Operations.calcStack.getValueAtIndex(i);
-                textfieldArray[index-i].setText(v.toString());
+                Double v = Operations.calcStack.getValueAtIndex(index - i);
+                textfieldArray[i].setText(v.toString());
             }
         }
 

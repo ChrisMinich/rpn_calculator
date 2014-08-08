@@ -1,7 +1,13 @@
 package calculator;
 
 class Operations {
-    public static RegisterStack calcStack = new RegisterStack(8, "primary");
+    private static final int stackSize = 8;
+    public static RegisterStack calcStack;
+
+    static {
+        calcStack = new RegisterStack(stackSize, "primary");
+    }
+
     private static double x, y;
 
     private static boolean popTwo() {
@@ -118,6 +124,10 @@ class Operations {
     public static String asHex() {
         int i = (int) calcStack.getX();
         return Integer.toHexString(i);
+    }
+
+    public static int getMaxIndex() {
+        return stackSize - 1;
     }
 
 }
