@@ -47,12 +47,13 @@ public class calc extends JFrame {
     private final static String infoString;
 
     static {
-        String h1 = "\nValid commands:\n+  -  *  /\nh: show hex value\ns: show stack\nclear: empty the stack\n";
+        String h1 = "\nValid commands:\n\n+   -   *   /\n\nhex: hexadecimal value\ns: show stack\nclear: empty the stack\n";
         String h2 = "\ninfo: additional information\n\n";
         String h3 = "\nStack holds 8 numbers\n";
-        String h4 = "\nUse postfix notation.\nEx:\n15  5  /\n3.0\n\n";
+        String h4 = "\nUse postfix notation.\nEx:\n15  5  /\n3.0\n";
+        String h5 = "\nNon commands are echoed to\nthis text area.\n\n";
         helpString = h1 + h2;
-        infoString = h3 + h4;
+        infoString = h3 + h4 + h5;
     }
 
     public calc() {
@@ -146,7 +147,7 @@ public class calc extends JFrame {
                 else if (op.equals("*")) multiply();
                 else if (op.equals("/")) divide();
                 else if (op.equals("s")) displayStack();
-                else if (op.equals("h")) {
+                else if (op.equals("hex")) {
                     textArea.append(Operations.asHex() + newline);
                     op = lineStr.getNextString();
                     continue;
