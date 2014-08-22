@@ -174,7 +174,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
         InputBuffer lineStr = new InputBuffer(text);
         op = lineStr.getNextString();
         while ( !op.equals("") ) {
-            jTextArea1.append(op + newline);
+            jTextArea1.insert(op + newline, 0);
             if (Operations.isNumeric(op)) {
                 d = Double.parseDouble(op);
                 Operations.calcStack.push(d);
@@ -192,7 +192,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
                 else if (op.equals("/")) divide();
                 else if (op.equals("s")) displayStack();
                 else if (op.equals("h")) {
-                    jTextArea1.append(Operations.asHex() + newline);
+                    jTextArea1.insert(Operations.asHex() + newline, 0);
                     op = lineStr.getNextString();
                     continue;
                 }
@@ -202,7 +202,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
                 }
                 // calculation was performed, get result from stack
                 d = Operations.getRegisterX();
-                jTextArea1.append(d + newline);
+                jTextArea1.insert(d + newline, 0);
             }
             op = lineStr.getNextString();
         }
@@ -223,7 +223,7 @@ public class CalculatorGUI extends javax.swing.JFrame {
 
         //Make sure the new text is visible, even if there
         //was a selection in the text area.
-        jTextArea1.setCaretPosition(jTextArea1.getDocument().getLength());
+        jTextArea1.setCaretPosition(0);
     }
 
     public void add() {
@@ -245,12 +245,12 @@ public class CalculatorGUI extends javax.swing.JFrame {
     // print out the stack
     public void displayStack() {
         double d;
-        jTextArea1.append("[" + newline);
+        jTextArea1.insert("[" + newline, 0);
         for (int i=0; i < Operations.calcStack.getCount(); i++) {
             d = Operations.calcStack.getValueAtIndex(i);
-            jTextArea1.append(d + newline);
+            jTextArea1.insert(d + newline, 0);
         }
-        jTextArea1.append("]" + newline);
+        jTextArea1.insert("]" + newline, 0);
     }
 
     /**
